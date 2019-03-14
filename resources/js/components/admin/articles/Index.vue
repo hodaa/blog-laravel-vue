@@ -4,7 +4,11 @@
         <router-link :to="{name: 'createArticle'}" class="btn btn-success">Create new Article</router-link>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Articles list</div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Artcles</li>
+            </ol>
+        </nav>
         <div class="panel-body">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -15,6 +19,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr v-if="!articles.length">
+                    <td colspan="3">No Articles found</td>
+                </tr>
                 <tr v-for="article, index in articles">
                     <td>{{ article.title }}</td>
                     <td>{{ article.category}}</td>

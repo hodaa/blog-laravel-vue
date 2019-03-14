@@ -9,12 +9,23 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
+
+// import CKEditor from '@ckeditor/ckeditor5-build-classic';
+//
+// Vue.use( CKEditor );
+
 window.Vue.use(VueRouter);
 import { routes } from './routes';
-
 const router = new VueRouter({ routes })
 
-const app = new Vue({ router }).$mount('#app')
+import 'v-markdown-editor/dist/index.css';
+import Editor from 'v-markdown-editor'
+
+// global register
+Vue.use(Editor);
+
+const app = new Vue({ router }).$mount('#app');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,8 +46,3 @@ const app = new Vue({ router }).$mount('#app')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app',
-//     router,
-//     components: { ArticlesIndex },
-// });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use App\Repositories\ArticleRepository;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -23,7 +24,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return  ArticleResource::collection($this->articleRepository->paginate(20));
+        $articles=$this->articleRepository->paginate(20);
+        return  ArticleResource::collection($articles);
     }
 
     /**
@@ -42,7 +44,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $article=$this->articleRepository->create($request->all());
         return new ArticleResource($article);

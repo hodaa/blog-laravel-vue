@@ -17,10 +17,10 @@ class CreateTableArticles extends Migration
             $table->bigIncrements('id');
 
             $table->string('title');
+            $table->text('content');
 
-            $table->integer('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
-
+            $table->bigInteger('category_id');
+            $table->string("author");
             $table->tinyInteger('published')->default(0);
             $table->timestamps();
         });

@@ -12,19 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.articles.index');
 });
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('articles', 'Api\V1\ArticleController@index')->name('companies.index');
+    Route::get('articles', function(){
+        return view('admin.articles.index');
+    });
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/articles',  function () {
-    return view('admin.articles.index');
-});
+//Route::get('/admin/articles',  function () {
+//    return view('admin.articles.index');
+//});
 //
 //Route::get('/vue/{vue_capture?}', function () {
 //    return view('vue.index');

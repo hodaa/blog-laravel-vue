@@ -16,11 +16,9 @@ class CreateTableComments extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedInteger('visitor_id');
-            $table->foreign('visitor_id')->reference('id')->on('visitors');
-
+            $table->text('name')->nullable();
             $table->text('text')->nullable();
-
+            $table->integer('article_id');
             $table->timestamps();
         });
     }

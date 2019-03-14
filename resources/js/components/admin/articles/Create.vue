@@ -1,6 +1,11 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-heading">Create new article</div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Artcles</li>
+                <li class="breadcrumb-item active" aria-current="page">create new article</li>
+            </ol>
+        </nav>
         <div class="panel-body">
             <form v-on:submit="saveForm()" class="col-md-12">
                 <div class="row">
@@ -22,7 +27,23 @@
                         <!--<input type="text" v-model="article.address" class="form-control">-->
                     </div>
                 </div>
+                <div class="row">
+                    <label class="control-label">Article Content</label>
+                    <markdown-editor v-model="article.content"></markdown-editor>
 
+                    <!--<div class="form-group">-->
+                        <!--<html-editor height="200" :model.sync="editor1"></html-editor>-->
+                    <!--</div>-->
+                    <!--{{editor1}}-->
+
+                    <!--<textarea v-model="article.content"></textarea>-->
+                    <!--<textarea name="summernoteInput" class="summernote"></textarea>-->
+
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label class="control-label">Article Author</label>
+                    <input type="text" v-model="article.author" class="form-control">
+                </div>
                 <div class="row">
                     <div class="col-xs-12 form-group">
                         <button class="btn btn-success">Create</button>
@@ -33,8 +54,13 @@
     </div>
 
 </template>
+
 <script>
+    import htmlEditor from '../../html-editor'
     export default {
+        components: {
+            htmlEditor
+        },
         mounted() {
             var app = this;
             axios.get('/api/v1/categories/')
@@ -51,7 +77,8 @@
                     title: '',
                     category_id: '',
                 },
-                categories: []
+                categories: [],
+                editor1: '',
             }
         },
         methods: {
@@ -61,7 +88,7 @@
                 var newarticle = app.article;
                 axios.post('/api/v1/articles', newarticle)
                     .then(function (resp) {
-                        app.$router.push({path: '/'});
+                        app.$router.push({path: '/list'});
                     })
                     .catch(function (resp) {
                         console.log(resp);
