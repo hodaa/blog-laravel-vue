@@ -8,13 +8,13 @@
         </nav>
         <div class="panel-body">
             <form v-on:submit="saveForm()" class="col-md-12">
-                <div class="row">
+
                     <div class="col-xs-12 form-group">
                         <label class="control-label">Article name</label>
                         <input type="text" v-model="article.title" class="form-control">
                     </div>
-                </div>
-                <div class="row">
+
+
                     <div class="col-xs-12 form-group">
                         <label class="control-label">Article Category</label>
 
@@ -23,32 +23,24 @@
                             <option v-for="cat in categories" v-bind:value="cat.id">{{ cat.name }}</option>
                         </select>
 
-                        <!--<span>Selected: {{ selected }}</span>-->
-                        <!--<input type="text" v-model="article.address" class="form-control">-->
                     </div>
-                </div>
-                <div class="row">
-                    <label class="control-label">Article Content</label>
-                    <markdown-editor v-model="article.content"></markdown-editor>
 
-                    <!--<div class="form-group">-->
-                        <!--<html-editor height="200" :model.sync="editor1"></html-editor>-->
-                    <!--</div>-->
-                    <!--{{editor1}}-->
 
-                    <!--<textarea v-model="article.content"></textarea>-->
-                    <!--<textarea name="summernoteInput" class="summernote"></textarea>-->
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label">Article Content</label>
+                        <markdown-editor v-model="article.content"></markdown-editor>
+                    </div>
 
-                </div>
-                <div class="col-xs-12 form-group">
-                    <label class="control-label">Article Author</label>
-                    <input type="text" v-model="article.author" class="form-control">
-                </div>
-                <div class="row">
+
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label">Article Author</label>
+                        <input type="text" v-model="article.author" class="form-control">
+                    </div>
+
                     <div class="col-xs-12 form-group">
                         <button class="btn btn-success">Create</button>
                     </div>
-                </div>
+
             </form>
         </div>
     </div>

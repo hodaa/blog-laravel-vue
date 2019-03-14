@@ -9,7 +9,6 @@
         <div class="row">
 
                 <div v-for="article in filteredList" class="post-preview">
-                    <a href="post.html">
                         <router-link :to="{name: 'ArticleDetails' ,params: {id: article.id}}">
                             <h2 class="post-title">
                             {{article.title}}
@@ -19,10 +18,9 @@
                         <h3 class="post-subtitle">
                             {{article.content.substring(0,180)+".."}}
                         </h3>
-                    </a>
                     <p class="post-meta">Posted by
                         <a href="#">{{article.author}}</a>
-                        {{article.created_at | dateFormat('YYYY.MM.DD')}}</p>
+                        {{article.created_at}}</p>
                 </div>
                 <hr>
                 <!-- Pager -->

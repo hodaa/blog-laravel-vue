@@ -13,6 +13,11 @@ Blog Sample Using laravel and Vue.js
 - Run __npm run dev__
 - That's it - load the homepage, use __Register__ link and use the CRUD
 
----
+- For Admin run
+ __php artisan db:seed --class="AddAdminData"__
+and login
+* ######username:admin@gmail.com
+* ######password:123456
+
 
 

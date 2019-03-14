@@ -1,14 +1,15 @@
 <template>
     <div class="container">
         <div><h1>{{article.title}}</h1></div>
+
     <div>{{article.content}}</div>
-    <div class="panel-heading">Comment</div>
+<hr>
     <div class="panel-body">
         <form v-on:submit="comment()" class="col-md-12">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    <label class="control-label">Comment Name</label>
-                    <textarea></textarea>
+                    <label class="control-label"><h4> Add Comment</h4></label>
+                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="6" cols="80"></textarea>
                 </div>
             </div>
 

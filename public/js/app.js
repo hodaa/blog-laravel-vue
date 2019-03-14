@@ -1813,14 +1813,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2074,6 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
@@ -2122,8 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -77551,93 +77542,87 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xs-12 form-group" }, [
-              _c("label", { staticClass: "control-label" }, [
-                _vm._v("Article name")
-              ]),
-              _vm._v(" "),
-              _c("input", {
+          _c("div", { staticClass: "col-xs-12 form-group" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _vm._v("Article name")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.article.title,
+                  expression: "article.title"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.article.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.article, "title", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xs-12 form-group" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _vm._v("Article Category")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.article.title,
-                    expression: "article.title"
+                    value: _vm.article.category_id,
+                    expression: "article.category_id"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.article.title },
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.article, "title", $event.target.value)
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.article,
+                      "category_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
                   }
                 }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xs-12 form-group" }, [
-              _c("label", { staticClass: "control-label" }, [
-                _vm._v("Article Category")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.article.category_id,
-                      expression: "article.category_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.article,
-                        "category_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { disabled: "", value: "" } }, [
-                    _vm._v("Please select one")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.categories, function(cat) {
-                    return _c("option", { domProps: { value: cat.id } }, [
-                      _vm._v(_vm._s(cat.name))
-                    ])
-                  })
-                ],
-                2
-              )
-            ])
+              },
+              [
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm._v("Please select one")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.categories, function(cat) {
+                  return _c("option", { domProps: { value: cat.id } }, [
+                    _vm._v(_vm._s(cat.name))
+                  ])
+                })
+              ],
+              2
+            )
           ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "row" },
+            { staticClass: "col-xs-12 form-group" },
             [
               _c("label", { staticClass: "control-label" }, [
                 _vm._v("Article Content")
@@ -77714,10 +77699,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-xs-12 form-group" }, [
-        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Create")])
-      ])
+    return _c("div", { staticClass: "col-xs-12 form-group" }, [
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Create")])
     ])
   }
 ]
@@ -78041,7 +78024,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", [_vm._v(_vm._s(_vm.article.content))]),
     _vm._v(" "),
-    _c("div", { staticClass: "panel-heading" }, [_vm._v("Comment")]),
+    _c("hr"),
     _vm._v(" "),
     _c("div", { staticClass: "panel-body" }, [
       _c(
@@ -78066,9 +78049,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xs-12 form-group" }, [
-        _c("label", { staticClass: "control-label" }, [_vm._v("Comment Name")]),
+        _c("label", { staticClass: "control-label" }, [
+          _c("h4", [_vm._v(" Add Comment")])
+        ]),
         _vm._v(" "),
-        _c("textarea")
+        _c("textarea", {
+          staticClass: "form-control rounded-0",
+          attrs: { id: "exampleFormControlTextarea1", rows: "6", cols: "80" }
+        })
       ])
     ])
   },
@@ -78142,51 +78130,46 @@ var render = function() {
       { staticClass: "row" },
       [
         _vm._l(_vm.filteredList, function(article) {
-          return _c("div", { staticClass: "post-preview" }, [
-            _c(
-              "a",
-              { attrs: { href: "post.html" } },
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: { name: "ArticleDetails", params: { id: article.id } }
-                    }
-                  },
-                  [
-                    _c("h2", { staticClass: "post-title" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(article.title) +
-                          "\n\n                    "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("h3", { staticClass: "post-subtitle" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(article.content.substring(0, 180) + "..") +
-                      "\n                    "
-                  )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "post-meta" }, [
-              _vm._v("Posted by\n                    "),
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(article.author))
+          return _c(
+            "div",
+            { staticClass: "post-preview" },
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: { name: "ArticleDetails", params: { id: article.id } }
+                  }
+                },
+                [
+                  _c("h2", { staticClass: "post-title" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(article.title) +
+                        "\n\n                    "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h3", { staticClass: "post-subtitle" }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(article.content.substring(0, 180) + "..") +
+                    "\n                    "
+                )
               ]),
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm._f("dateFormat")(article.created_at, "YYYY.MM.DD"))
-              )
-            ])
-          ])
+              _vm._v(" "),
+              _c("p", { staticClass: "post-meta" }, [
+                _vm._v("Posted by\n                    "),
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(_vm._s(article.author))
+                ]),
+                _vm._v("\n                    " + _vm._s(article.created_at))
+              ])
+            ],
+            1
+          )
         }),
         _vm._v(" "),
         _c("hr")
