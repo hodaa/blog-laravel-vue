@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <link href="{{url('css/clean-blog.css')}}" rel="stylesheet">
-    <link href="{{url('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('css/clean-blog.css')}}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -49,9 +48,9 @@
                 <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
                 </li>
-                {{--<li class="nav-item">--}}
-                {{--<a class="nav-link" href="about.html">About</a>--}}
-                {{--</li>--}}
+                <li class="nav-item">
+                <a class="nav-link" href="admin/articles/#/list">Admin</a>
+                </li>
                 {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="post.html">Sample Post</a>--}}
                 {{--</li>--}}

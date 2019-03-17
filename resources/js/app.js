@@ -16,7 +16,8 @@ import VueRouter from 'vue-router';
 
 window.Vue.use(VueRouter);
 import { routes } from './routes';
-const router = new VueRouter({ routes })
+
+const router = new VueRouter({ routes });
 
 import 'v-markdown-editor/dist/index.css';
 import Editor from 'v-markdown-editor'
@@ -24,7 +25,7 @@ import Editor from 'v-markdown-editor'
 // global register
 Vue.use(Editor);
 
-const app = new Vue({ router }).$mount('#app');
+const app = new Vue({ mode:'history',router }).$mount('#app');
 
 
 /**

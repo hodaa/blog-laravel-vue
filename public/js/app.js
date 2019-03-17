@@ -93118,6 +93118,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 Vue.use(v_markdown_editor__WEBPACK_IMPORTED_MODULE_3___default.a);
 var app = new Vue({
+  mode: 'history',
   router: router
 }).$mount('#app');
 /**
@@ -93634,7 +93635,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/list',
+  path: 'admin/articles/list',
   components: {
     articlesIndex: _components_admin_articles_Index_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -93655,6 +93656,26 @@ var routes = [{
   path: '/article/:id',
   component: _components_front_articles_details_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'ArticleDetails'
+}, {
+  path: '/login',
+  name: 'login',
+  component: Login,
+  meta: {
+    auth: false
+  }
+}, {
+  path: '/admin',
+  name: 'admin.dashboard',
+  component: AdminDashboard,
+  meta: {
+    auth: {
+      roles: 2,
+      redirect: {
+        name: 'login'
+      },
+      forbiddenRedirect: '/403'
+    }
+  }
 }];
 
 /***/ }),

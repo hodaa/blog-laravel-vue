@@ -5,8 +5,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body table-responsive">
-                    <router-view name="articlesIndex"></router-view>
+
                     <router-view></router-view>
+                    <router-view name="articlesIndex"></router-view>
                 </div>
             </div>
         </div>

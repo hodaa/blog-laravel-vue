@@ -7,9 +7,9 @@ import ArticlesList from './components/front/articles/index.vue';
 import ArticleDetails from './components/front/articles/details.vue';
 
 export const routes = [
-
     {
-        path: '/list',
+
+        path: 'admin/articles/list',
         components: {
             articlesIndex: ArticlesIndex
         },
@@ -18,9 +18,26 @@ export const routes = [
     {path: '/edit/:id', component: ArticlesEdit, name: 'editArticle'},
 
     ////////////////////front//////////////////
-    {path: '/', component: ArticlesList, name: 'listArticle'},
+
+    {path: '/',component: ArticlesList, name: 'listArticle'},
     {path: '/article/:id', component: ArticleDetails, name: 'ArticleDetails'},
 
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        path: '/admin',
+        name: 'admin.dashboard',
+        component: AdminDashboard,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+        }
+    },
 
 ];
 
