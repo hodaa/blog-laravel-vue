@@ -16,8 +16,8 @@ Blog Sample Using laravel and Vue.js
 - For Admin run
  __php artisan db:seed --class="AddAdminData"__
 and login
-* ######username:admin@gmail.com
-* ######password:123456
+* ###### username:admin@gmail.com
+* ###### password:123456
 
 
 

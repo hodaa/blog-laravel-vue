@@ -1,9 +1,12 @@
 <?php
 namespace App\Repositories;
+use App\Repositories\Contracts\CriteriaInterface;
 use Illuminate\Container\Container as App;
 use App\Repositories\Contracts\RepositoryInterface;
+use App\Repositories\Criteria\AbstractCriteria;
+use Illuminate\Support\Collection;
 
-Abstract class AbstractRepository implements RepositoryInterface
+Abstract class AbstractRepository implements RepositoryInterface,CriteriaInterface
 {
 
     /**
@@ -15,15 +18,21 @@ Abstract class AbstractRepository implements RepositoryInterface
      * @var App
      */
     private $app;
+    /**
+     * @var Collection
+     */
+    protected $criteria;
 
     /**
      * Repository constructor.
      * @param App $app
      * @throws RepositoryException
      */
-    public function __construct(App $app)
+    public function __construct(App $app,Collection $collection)
     {
         $this->app = $app;
+        $this->criteria = $collection;
+        $this->resetScope();
         $this->makeModel();
     }
 
@@ -41,6 +50,7 @@ Abstract class AbstractRepository implements RepositoryInterface
      */
     public function all($columns = ['*'])
     {
+        $this->applyCriteria();
         return $this->model->get($columns);
     }
 
@@ -126,5 +136,58 @@ Abstract class AbstractRepository implements RepositoryInterface
 //        }
 
         return $this->model = $model->newQuery();
+    }
+    /**
+     * @param Criteria $criteria
+     * @return $this
+     */
+    public function getByCriteria(AbstractCriteria $criteria) {
+        $this->model = $criteria->apply($this->model, $this);
+        return $this;
+    }
+
+    /**
+     * @param Criteria $criteria
+     * @return $this
+     */
+    public function pushCriteria(AbstractCriteria $criteria) {
+        $this->criteria->push($criteria);
+        return $this;
+    }
+    /**
+     * @return $this
+     */
+    public function resetScope() {
+        $this->skipCriteria(false);
+        return $this;
+    }
+
+    /**
+     * @param bool $status
+     * @return $this
+     */
+    public function skipCriteria($status = true){
+        $this->skipCriteria = $status;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCriteria() {
+        return $this->criteria;
+    }
+
+    public function  applyCriteria() {
+
+        if($this->skipCriteria === true)
+            return $this;
+
+        foreach($this->getCriteria() as $criteria) {
+            if($criteria instanceof AbstractCriteria)
+                $this->model = $criteria->apply($this->model, $this);
+        }
+
+        return $this;
     }
 }

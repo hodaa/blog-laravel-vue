@@ -1901,6 +1901,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
@@ -77741,88 +77751,133 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-xs-12 form-group" }, [
-                _c("label", { staticClass: "control-label" }, [
-                  _vm._v("article name")
-                ]),
-                _vm._v(" "),
-                _c("input", {
+            _c("div", { staticClass: "col-xs-12 form-group" }, [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("article name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.title,
+                    expression: "article.title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.article.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.article, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xs-12 form-group" }, [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("article Category")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.article.title,
-                      expression: "article.title"
+                      value: _vm.article.category_id,
+                      expression: "article.category_id"
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.article.title },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.article, "title", $event.target.value)
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.article,
+                        "category_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
                     }
                   }
-                })
-              ])
+                },
+                [
+                  _c("option", { attrs: { disabled: "", value: "" } }, [
+                    _vm._v("Please select one")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(cat) {
+                    return _c("option", { domProps: { value: cat.id } }, [
+                      _vm._v(_vm._s(cat.name))
+                    ])
+                  })
+                ],
+                2
+              )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-xs-12 form-group" }, [
+            _c(
+              "div",
+              { staticClass: "col-xs-12 form-group" },
+              [
                 _c("label", { staticClass: "control-label" }, [
-                  _vm._v("article Category")
+                  _vm._v("Article Content")
                 ]),
                 _vm._v(" "),
-                _c(
-                  "select",
+                _c("markdown-editor", {
+                  model: {
+                    value: _vm.article.content,
+                    callback: function($$v) {
+                      _vm.$set(_vm.article, "content", $$v)
+                    },
+                    expression: "article.content"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xs-12 form-group" }, [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Article Author")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
                   {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.article.category_id,
-                        expression: "article.category_id"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.article,
-                          "category_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.author,
+                    expression: "article.author"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.article.author },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  },
-                  [
-                    _c("option", { attrs: { disabled: "", value: "" } }, [
-                      _vm._v("Please select one")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.categories, function(cat) {
-                      return _c("option", { domProps: { value: cat.id } }, [
-                        _vm._v(_vm._s(cat.name))
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ])
+                    _vm.$set(_vm.article, "author", $event.target.value)
+                  }
+                }
+              })
             ]),
             _vm._v(" "),
             _vm._m(1)
@@ -93635,7 +93690,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: 'admin/articles/list',
+  path: '/',
   components: {
     articlesIndex: _components_admin_articles_Index_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -93656,26 +93711,6 @@ var routes = [{
   path: '/article/:id',
   component: _components_front_articles_details_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'ArticleDetails'
-}, {
-  path: '/login',
-  name: 'login',
-  component: Login,
-  meta: {
-    auth: false
-  }
-}, {
-  path: '/admin',
-  name: 'admin.dashboard',
-  component: AdminDashboard,
-  meta: {
-    auth: {
-      roles: 2,
-      redirect: {
-        name: 'login'
-      },
-      forbiddenRedirect: '/403'
-    }
-  }
 }];
 
 /***/ }),
