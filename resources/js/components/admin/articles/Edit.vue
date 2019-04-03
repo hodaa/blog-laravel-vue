@@ -11,19 +11,24 @@
 
                     <div class="col-xs-12 form-group">
                         <label class="control-label">article Category</label>
-
-                        <select class="form-control"  v-model="article.category_id">
-                            <option disabled value="">Please select one</option>
-                            <option v-for="cat in categories" v-bind:value="cat.id">{{ cat.name }}</option>
+                        <select class="form-control" v-model="article.category_id">
+                            <option  selected value="0">Please Select</option>
+                            <option :selected="cat.id==selected" v-for="cat in categories" :value="cat.id">
+                                {{ cat.name }}
+                            </option>
                         </select>
 
-                        <!--<span>Selected: {{ selected }}</span>-->
-                        <!--<input type="text" v-model="article.address" class="form-control">-->
                     </div>
 
                 <div class="col-xs-12 form-group">
                     <label class="control-label">Article Content</label>
-                    <markdown-editor v-model="article.content"></markdown-editor>
+                    <markdown-editor  v-model="article.content"></markdown-editor>
+                </div>
+
+                <div class="col-xs-12 form-group">
+                    <label class="control-label">Published</label>
+                    <input type="checkbox"  checked="true" true-value="1"
+                           false-value="0"  class="control-label" v-model="article.published"/>
                 </div>
 
 
@@ -54,6 +59,7 @@
             axios.get('/api/v1/articles/' + id)
                 .then(function (resp) {
                     app.article = resp.data.data;
+                    app.selected=app.article.category_id
                 })
                 .catch(function () {
                     alert("Could not load your article")
@@ -62,6 +68,7 @@
             axios.get('/api/v1/categories/')
                 .then(function (resp) {
                     app.categories = resp.data.data;
+
                 })
                 .catch(function () {
                     alert("Could not load your article")
@@ -76,7 +83,8 @@
                     website: '',
                     email: '',
                 },
-                categories: []
+                categories: [],
+                selected: 0,
             }
         },
         methods: {

@@ -3,14 +3,14 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-class AddAdminData extends Seeder
+class AddAdmin extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run()
     {
-        User::insert([
+        User::updateOrCreate([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt(123456),

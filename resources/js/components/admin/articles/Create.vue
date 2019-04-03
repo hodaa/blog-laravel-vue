@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Artcles</li>
+                <li class="breadcrumb-item">Articles</li>
                 <li class="breadcrumb-item active" aria-current="page">create new article</li>
             </ol>
         </nav>
@@ -20,7 +20,7 @@
 
                         <select class="form-control"  v-model="article.category_id">
                             <option disabled value="">Please select one</option>
-                            <option v-for="cat in categories" v-bind:value="cat.id">{{ cat.name }}</option>
+                            <option v-for="cat in categories"  :value="cat.id" >{{ cat.name }}</option>
                         </select>
 
                     </div>
@@ -30,7 +30,11 @@
                         <label class="control-label">Article Content</label>
                         <markdown-editor v-model="article.content"></markdown-editor>
                     </div>
-
+                <div class="col-xs-12 form-group">
+                    <label class="control-label">Published</label>
+                   <input type="checkbox" true-value="1"
+                          false-value="0" class="control-label"  v-model="article.published"/>
+                </div>
 
                     <div class="col-xs-12 form-group">
                         <label class="control-label">Article Author</label>
@@ -80,7 +84,7 @@
                 var newarticle = app.article;
                 axios.post('/api/v1/articles', newarticle)
                     .then(function (resp) {
-                        app.$router.push({path: '/list'});
+                        app.$router.push({path: '/'});
                     })
                     .catch(function (resp) {
                         console.log(resp);

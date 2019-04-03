@@ -49,7 +49,7 @@
                 <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="admin/articles#/">Admin</a>
+                <a class="nav-link" href="{{url('admin/articles#')}}">Admin</a>
                 </li>
                 {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="post.html">Sample Post</a>--}}

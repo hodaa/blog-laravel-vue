@@ -263,9 +263,11 @@ header.masthead .post-heading .meta a {
     font-size: 30px;
   }
 }
-
+.post-title{
+  color:cadetblue;
+}
 .post-preview > a {
-  color: #212529;
+  color: cadetblue;
 }
 
 .post-preview > a:focus, .post-preview > a:hover {
@@ -277,7 +279,7 @@ header.masthead .post-heading .meta a {
   font-size: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
-  color: #868e96;
+  color: cadetblue;
 
 }
 

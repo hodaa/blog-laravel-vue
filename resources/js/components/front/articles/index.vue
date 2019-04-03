@@ -33,6 +33,7 @@
 
 <script>
     export default {
+        name: "listArticle",
         data: function () {
             return {
                 articles: [],

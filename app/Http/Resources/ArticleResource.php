@@ -20,9 +20,11 @@ class ArticleResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'category' => $this->category->name,
+            'category_id' => $this->category->id,
             'content' => $this->content,
             'author' =>$this->author,
-            'created_at' =>date_format($this->created_at,'Y-m-d')
+            'comments'=>$this->comments,
+            'created_at' =>date_format($this->created_at,'Y-m-d'),
         ];
     }
 }

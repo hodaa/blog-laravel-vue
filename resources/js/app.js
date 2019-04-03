@@ -10,9 +10,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 
-// import CKEditor from '@ckeditor/ckeditor5-build-classic';
-//
-// Vue.use( CKEditor );
+
 
 window.Vue.use(VueRouter);
 import { routes } from './routes';
@@ -25,7 +23,12 @@ import Editor from 'v-markdown-editor'
 // global register
 Vue.use(Editor);
 
-const app = new Vue({ mode:'history',router }).$mount('#app');
+
+
+const app = new Vue({
+    mode:'history',router }).$mount('#app');
+
+
 
 
 /**

@@ -37,6 +37,7 @@
                 </tr>
                 </tbody>
             </table>
+            <pagination v-if="pagination.last_page > 0" :pagination="pagination" :offset="5" @paginate="fetchPosts()"></pagination>
         </div>
     </div>
 </div>
@@ -45,7 +46,8 @@
     export default {
         data: function () {
             return {
-                articles: []
+                articles: [],
+                pagination:''
             }
         },
         mounted() {
@@ -53,6 +55,7 @@
             axios.get('/api/v1/articles')
                 .then(function (resp) {
                     app.articles = resp.data.data;
+                    app.pagination=resp.data.meta
                 })
                 .catch(function (resp) {
                     console.log(resp);

@@ -19,3 +19,4 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 });
 Route::get('/','ArticleController@index');
 Route::resource('articles', 'ArticleController');
+Route::POST('articles/{id}/comments', 'ArticleController@comment');
